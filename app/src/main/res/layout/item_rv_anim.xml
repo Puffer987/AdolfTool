@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+
+    android:paddingStart="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:id="@+id/item_parent"
+        android:background="@drawable/selector_tv"
+        android:elevation="3dp"
+        android:translationX="5dp">
+
+        <TextView
+            android:id="@+id/item_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/btn_drag"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#FF8A65"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/btn_drag"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="20dp"
+            android:layout_alignParentEnd="true"
+            android:src ="@drawable/ic_drag" />
+
+    </RelativeLayout>
+
+</LinearLayout>

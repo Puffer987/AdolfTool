@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"><!--被按下时-->
+        <shape android:shape="rectangle"><!--默认为矩形，可以设置为矩形（rectangle）、椭圆形(oval)、线性形状(line)、环形(ring)-->
+            <corners android:radius="50dp" />   <!--圆角-->
+            <solid android:color="#3949AB" />       <!--内部填充色-->
+        </shape>
+    </item>
+
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="50dp" />
+            <solid android:color="#3949AB" />
+        </shape>
+    </item>
+
+    <item><!--最后一个item不设置state_pressed时表示所有其他状态(只有在最后才能不写state_pressed不然之后的item会被忽略)-->
+        <shape>
+            <corners android:radius="15dp" />
+            <solid android:color="#52A333" />
+        </shape>
+    </item>
+</selector>
