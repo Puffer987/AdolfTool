@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".wsp3.DatabaseProviderActivity"></activity>
+        <provider
+            android:name=".wsp3.AdolfDbProvider"
+            android:authorities="cn.adolf.db.provider"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".wsp3.DbMainActivity" />
         <activity android:name=".wsp2.WorkspaceActivity" />
         <activity android:name=".wsp1.RvAdvanceActivity" />
         <activity android:name=".MainActivity">

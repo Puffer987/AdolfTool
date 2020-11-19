@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.adolf.adolf.R;
 
-public class DatabaseProviderActivity extends AppCompatActivity {
+public class DbMainActivity extends AppCompatActivity {
 
     private static final String TAG = "DbActivity";
     @BindView(R.id.user_info)
@@ -62,21 +62,21 @@ public class DatabaseProviderActivity extends AppCompatActivity {
     @BindView(R.id.group_del)
     LinearLayout mGroupDel;
     private int mSex;
-    private UserDbOpenHelper mDbOpenHelper;
+    private AdolfDbOpenHelper mDbOpenHelper;
     private SQLiteDatabase mDatabase;
     private UserAdapter mUserAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_database_provider);
+        setContentView(R.layout.activity_db_main);
         ButterKnife.bind(this);
         initDatabase();
         initView();
     }
 
     private void initDatabase() {
-        mDbOpenHelper = new UserDbOpenHelper(this, "AdolfDatabase");
+        mDbOpenHelper = new AdolfDbOpenHelper(this, AdolfDbOpenHelper.DB_NAME);
     }
 
     private void initView() {
@@ -105,7 +105,7 @@ public class DatabaseProviderActivity extends AppCompatActivity {
         mUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DatabaseProviderActivity.this, "query", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DbMainActivity.this, "query", Toast.LENGTH_SHORT).show();
                 mUserAdapter.modifyUserBeans(getUser());
             }
         });

@@ -12,8 +12,9 @@ import androidx.annotation.Nullable;
  * @author: yjq
  * @create: 2020-11-18 15:20
  **/
-public class UserDbOpenHelper extends SQLiteOpenHelper {
+public class AdolfDbOpenHelper extends SQLiteOpenHelper {
 
+    public static final String DB_NAME = "AdolfDatabase";
     private static final int VERSION = 1;
     private static final String CREATE_USER = "create table user(" +
             "id integer primary key autoincrement," +
@@ -21,11 +22,11 @@ public class UserDbOpenHelper extends SQLiteOpenHelper {
             "sex integer," +
             "motto text)";
 
-    public UserDbOpenHelper(Context context, String name) {
+    public AdolfDbOpenHelper(Context context, String name) {
         this(context, name, null, VERSION);
     }
 
-    public UserDbOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public AdolfDbOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

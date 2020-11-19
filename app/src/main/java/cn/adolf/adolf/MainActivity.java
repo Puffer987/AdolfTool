@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.adolf.adolf.wsp1.RvAdvanceActivity;
 import cn.adolf.adolf.wsp2.WorkspaceActivity;
-import cn.adolf.adolf.wsp3.DatabaseProviderActivity;
+import cn.adolf.adolf.wsp3.DbMainActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, WorkspaceActivity.class));
                 break;
             case R.id.database_provider:
-                startActivity(new Intent(this, DatabaseProviderActivity.class));
+                startActivity(new Intent(this, DbMainActivity.class));
                 break;
 
         }
