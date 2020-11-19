@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.adolf.adolf.wsp1.RvAdvanceActivity;
 import cn.adolf.adolf.wsp2.WorkspaceActivity;
+import cn.adolf.adolf.wsp3.DatabaseProviderActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.rv_advance, R.id.workspace})
+    @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rv_advance:
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.workspace:
                 startActivity(new Intent(this, WorkspaceActivity.class));
                 break;
+            case R.id.database_provider:
+                startActivity(new Intent(this, DatabaseProviderActivity.class));
+                break;
+
         }
     }
 }
