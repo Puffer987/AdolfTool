@@ -1,2 +1,3 @@
+include ':adolftest'
 include ':app'
 rootProject.name = "Adolf"
