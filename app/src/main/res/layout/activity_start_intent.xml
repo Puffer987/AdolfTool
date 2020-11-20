@@ -4,31 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="bottom"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-
-    <Button
-        android:id="@+id/rv_advance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="recycle View" />
+    tools:context=".intent.StartIntentActivity">
 
     <Button
-        android:id="@+id/workspace"
+        android:id="@+id/btn_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="workSpace" />
+        android:text="action启动" />
 
     <Button
-        android:id="@+id/database_provider"
+        android:id="@+id/btn_cat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="持久化" />
+        android:text="action菜单" />
 
-    <Button
-        android:id="@+id/start_intent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Intent" />
 </LinearLayout>

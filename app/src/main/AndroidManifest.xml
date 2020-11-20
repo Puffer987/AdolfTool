@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".intent.StartIntentActivity"></activity>
+
         <provider
             android:name=".wsp3.AdolfDbProvider"
             android:authorities="cn.adolf.db.provider"
@@ -17,7 +19,14 @@
 
         <activity android:name=".wsp3.DbMainActivity" />
         <activity android:name=".wsp2.WorkspaceActivity" />
-        <activity android:name=".wsp1.RvAdvanceActivity" />
+        <activity
+            android:name=".wsp1.RvAdvanceActivity"
+            android:label="Adolf中自身应用的">
+            <intent-filter>
+                <action android:name="666" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

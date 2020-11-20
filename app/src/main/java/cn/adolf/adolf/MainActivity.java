@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.adolf.adolf.intent.StartIntentActivity;
 import cn.adolf.adolf.wsp1.RvAdvanceActivity;
 import cn.adolf.adolf.wsp2.WorkspaceActivity;
 import cn.adolf.adolf.wsp3.DbMainActivity;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider})
+    @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider, R.id.start_intent})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rv_advance:
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.database_provider:
                 startActivity(new Intent(this, DbMainActivity.class));
+                break;
+            case R.id.start_intent:
+                startActivity(new Intent(this, StartIntentActivity.class));
                 break;
 
         }

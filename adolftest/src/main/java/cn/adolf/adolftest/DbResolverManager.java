@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -18,7 +17,6 @@ import android.widget.Toast;
 public class DbResolverManager {
 
     private static final String ADOLF_URI = "content://cn.adolf.db.provider/";
-    private static final String TAG = "DbResolverManager";
     private static DbResolverManager instance; // 懒汉，在需要使用时才实例化
     // private static DatabaseManager instance= new DatabaseManager(context); // 饿汉，初始化时就实例化
     private Context mContext;

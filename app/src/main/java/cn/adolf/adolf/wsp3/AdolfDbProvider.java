@@ -119,4 +119,5 @@ public class AdolfDbProvider extends ContentProvider {
         }
         return param;
     }
+
 }
