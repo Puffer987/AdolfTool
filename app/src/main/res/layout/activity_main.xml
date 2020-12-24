@@ -31,4 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Intent" />
+
+    <Button
+        android:id="@+id/start_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进度条" />
+
+    <Button
+        android:id="@+id/start_pathanim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="路径动画" />
 </LinearLayout>

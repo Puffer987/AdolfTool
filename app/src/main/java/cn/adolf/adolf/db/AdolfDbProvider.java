@@ -1,4 +1,4 @@
-package cn.adolf.adolf.wsp3;
+package cn.adolf.adolf.db;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

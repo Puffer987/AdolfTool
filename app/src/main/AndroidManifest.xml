@@ -9,21 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".intent.StartIntentActivity"></activity>
+        <activity android:name=".wsp2.PathAnimActivity"></activity>
+        <activity android:name=".wsp2.ProgressActivity" />
+        <activity android:name=".intent.StartIntentActivity" />
 
         <provider
-            android:name=".wsp3.AdolfDbProvider"
+            android:name=".db.AdolfDbProvider"
             android:authorities="cn.adolf.db.provider"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".wsp3.DbMainActivity" />
-        <activity android:name=".wsp2.WorkspaceActivity" />
+        <activity android:name=".db.DbMainActivity" />
+        <activity android:name=".wsp2.VisibleListenerActivity" />
         <activity
-            android:name=".wsp1.RvAdvanceActivity"
+            android:name=".animRv.RvAdvanceActivity"
             android:label="Adolf中自身应用的">
             <intent-filter>
                 <action android:name="666" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

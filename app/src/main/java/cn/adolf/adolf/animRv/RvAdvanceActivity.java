@@ -1,4 +1,4 @@
-package cn.adolf.adolf.wsp1;
+package cn.adolf.adolf.animRv;
 
 import android.os.Bundle;
 import android.view.View;

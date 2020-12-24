@@ -1,4 +1,4 @@
-package cn.adolf.adolf.wsp3;
+package cn.adolf.adolf.db;
 
 /**
  * @program: Adolf

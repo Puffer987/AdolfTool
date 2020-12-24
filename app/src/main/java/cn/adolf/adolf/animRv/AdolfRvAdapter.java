@@ -1,4 +1,4 @@
-package cn.adolf.adolf.wsp1;
+package cn.adolf.adolf.animRv;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

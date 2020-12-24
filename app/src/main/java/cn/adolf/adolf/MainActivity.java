@@ -3,15 +3,18 @@ package cn.adolf.adolf;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.adolf.adolf.intent.StartIntentActivity;
-import cn.adolf.adolf.wsp1.RvAdvanceActivity;
-import cn.adolf.adolf.wsp2.WorkspaceActivity;
-import cn.adolf.adolf.wsp3.DbMainActivity;
+import cn.adolf.adolf.animRv.RvAdvanceActivity;
+import cn.adolf.adolf.wsp2.PathAnimActivity;
+import cn.adolf.adolf.wsp2.ProgressActivity;
+import cn.adolf.adolf.wsp2.VisibleListenerActivity;
+import cn.adolf.adolf.db.DbMainActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider, R.id.start_intent})
+    @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider, R.id.start_intent, R.id.start_progress, R.id.start_pathanim})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rv_advance:
                 startActivity(new Intent(this, RvAdvanceActivity.class));
                 break;
             case R.id.workspace:
-                startActivity(new Intent(this, WorkspaceActivity.class));
+                startActivity(new Intent(this, VisibleListenerActivity.class));
                 break;
             case R.id.database_provider:
                 startActivity(new Intent(this, DbMainActivity.class));
@@ -37,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.start_intent:
                 startActivity(new Intent(this, StartIntentActivity.class));
                 break;
-
+            case R.id.start_progress:
+                startActivity(new Intent(this, ProgressActivity.class));
+                break;
+            case R.id.start_pathanim:
+                startActivity(new Intent(this, PathAnimActivity.class));
+                break;
         }
     }
 }

@@ -21,7 +21,7 @@ import cn.adolf.adolf.R;
 /**
  * 1. 使用tint和tintModel来控制颜色叠加，分为src和background
  */
-public class WorkspaceActivity extends AppCompatActivity {
+public class VisibleListenerActivity extends AppCompatActivity {
 
     private static final String TAG = "WorkspaceActivity";
     @BindView(R.id.btn_switch)
@@ -40,7 +40,7 @@ public class WorkspaceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workspace);
+        setContentView(R.layout.activity_visible_listener);
         ButterKnife.bind(this);
 
 
@@ -60,9 +60,9 @@ public class WorkspaceActivity extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 if (mImgTest.isShown()) {
-                    Toast.makeText(WorkspaceActivity.this, "可见", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VisibleListenerActivity.this, "可见", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(WorkspaceActivity.this, "消失了", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VisibleListenerActivity.this, "消失了", Toast.LENGTH_SHORT).show();
                 }
             }
         });
