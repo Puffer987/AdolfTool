@@ -10,22 +10,20 @@
         <scale android:scaleWidth="100%">
             <shape>
                 <corners android:radius="20dp" />
-                <solid android:color="#388E3C" />
+                <solid android:color="#004D40" />
             </shape>
         </scale>
     </item>
 
     <item android:id="@android:id/progress">
-        <!--
         <clip>
             <shape>
                 <corners android:radius="20dp" />
-                <solid android:color="#e1ebff" />
+                <solid android:color="#388E3C" />
             </shape>
         </clip>
-        -->
-        <scale
-            android:drawable="@drawable/progress_bar_ct"
-            android:scaleWidth="100%" />
+        <!--<scale-->
+        <!--    android:drawable="@drawable/progress_bar_ct"-->
+        <!--    android:scaleWidth="100%" />-->
     </item>
 </layer-list>
