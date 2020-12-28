@@ -1,4 +1,4 @@
-package cn.adolf.adolf.wsp2;
+package cn.adolf.adolf.pathAnim;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
