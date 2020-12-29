@@ -3,7 +3,7 @@
     package="cn.adolf.adolf">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".file.FileActivity"></activity>
+        <activity android:name=".widget.WidgetActivity"></activity>
+
+        <receiver android:name=".widget.DaysWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/days_widget_info" />
+        </receiver>
+
+        <activity android:name=".widget.DaysWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="cn.adolf.widget.action.FORCE_UPDATE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".file.FileActivity" />
         <activity android:name=".pathAnim.PathAnimActivity" />
         <activity android:name=".wsp2.ProgressActivity" />
         <activity android:name=".intent.StartIntentActivity" />

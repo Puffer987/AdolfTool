@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="cn.adolf.adolf.widget.DaysWidgetConfigureActivity"
+    android:initialKeyguardLayout="@layout/days_widget"
+    android:initialLayout="@layout/days_widget"
+    android:minWidth="110dp"
+    android:minHeight="40dp"
+    android:previewImage="@drawable/example_appwidget_preview"
+    android:resizeMode="vertical"
+    android:updatePeriodMillis="43200000"
+    android:widgetCategory="home_screen" />

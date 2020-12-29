@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".widget.WidgetActivity">
+
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <TextView
+        android:id="@+id/date_tv"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="150dp"
+        android:gravity="center_vertical|right"
+        android:text="2017-04-22"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/date_btn"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/date_tv"
+        android:layout_marginLeft="20dp"
+        android:layout_toEndOf="@+id/date_tv"
+        android:text="选择" />
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:gravity="center_vertical|right"
+        android:text="22:30"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/time_btn"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/time_tv"
+        android:layout_marginLeft="20dp"
+        android:layout_toEndOf="@+id/time_tv"
+        android:text="选择" />
+
+
+</RelativeLayout>
