@@ -40,7 +40,7 @@ public class DaysWidget extends AppWidgetProvider {
                 String[] split = data.getSchemeSpecificPart().split("-");// 返回":"和"#"之间的字符串
                 resId = Integer.parseInt(split[0]);
                 widgetId = Integer.parseInt(split[1]);
-                Log.e(TAG, "onReceive: "+data.getSchemeSpecificPart());
+                Log.e(TAG, "onReceive: " + data.getSchemeSpecificPart());
             }
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.days_widget);
             switch (resId) {
@@ -76,19 +76,10 @@ public class DaysWidget extends AppWidgetProvider {
 
         Bitmap bitmap = SumUtils.buildBitmapWithShadow(context, sumDays, 150);
         views.setImageViewBitmap(R.id.img_days, bitmap);
+        // 跳转闹钟界面需要声明权限  <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
         views.setOnClickPendingIntent(R.id.img_days, getActivityIntent(context, AlarmClock.ACTION_SHOW_ALARMS));
         views.setOnClickPendingIntent(R.id.layout_parent, getForceUpdateBroadcastIntent(context, R.id.layout_parent, appWidgetId));
-
-        // 判断是否有微信，再设置扫一扫
-        PackageManager packageManager = context.getPackageManager();
-        List<PackageInfo> packages = packageManager.getInstalledPackages(0);
-        for (PackageInfo info : packages) {
-            if (info.packageName.equalsIgnoreCase("com.tencent.mm")) {
-                Log.d(TAG, "已安装微信");
-                views.setOnClickPendingIntent(R.id.right_bottom, getWeChatScanIntent(context));
-                return;
-            }
-        }
+        views.setOnClickPendingIntent(R.id.right_bottom, getWeChatScanIntent(context));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -145,8 +136,11 @@ public class DaysWidget extends AppWidgetProvider {
 
     private static PendingIntent getWeChatScanIntent(Context context) {
         Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.tencent.mm");
-        intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
-        return PendingIntent.getActivity(context, 0, intent, 0);
+        if (intent != null) {
+            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+            return PendingIntent.getActivity(context, 0, intent, 0);
+        }
+        return null;
     }
 }
 
