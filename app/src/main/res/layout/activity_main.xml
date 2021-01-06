@@ -2,55 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/rv_advance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="recycle View" />
 
-    <Button
-        android:id="@+id/workspace"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="workSpace" />
+        <Button
+            android:id="@+id/rv_advance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="recycle View" />
 
-    <Button
-        android:id="@+id/database_provider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="持久化" />
+        <Button
+            android:id="@+id/workspace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="workSpace" />
 
-    <Button
-        android:id="@+id/start_intent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Intent" />
+        <Button
+            android:id="@+id/database_provider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="持久化" />
 
-    <Button
-        android:id="@+id/start_progress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="进度条" />
+        <Button
+            android:id="@+id/start_intent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Intent" />
 
-    <Button
-        android:id="@+id/start_pathanim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="路径动画" />
-    <Button
-        android:id="@+id/start_file"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="文件" />
-    <Button
-        android:id="@+id/start_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="widget" />
+        <Button
+            android:id="@+id/start_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进度条" />
+
+        <Button
+            android:id="@+id/start_pathanim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="路径动画" />
+
+        <Button
+            android:id="@+id/start_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="文件" />
+
+        <Button
+            android:id="@+id/start_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="widget" />
+
+        <Button
+            android:id="@+id/start_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通知" />
+    </LinearLayout>
 </LinearLayout>
