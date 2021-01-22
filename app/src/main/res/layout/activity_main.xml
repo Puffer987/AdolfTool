@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:layout_gravity="center"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
 
         <Button
@@ -68,5 +68,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="通知" />
+
+        <Button
+            android:id="@+id/start_media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="媒体" />
     </LinearLayout>
 </LinearLayout>
