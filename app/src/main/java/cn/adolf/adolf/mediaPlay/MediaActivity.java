@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,8 @@ public class MediaActivity extends AppCompatActivity {
     ImageView mVoicePlay;
     @BindView(R.id.voice_pause)
     ImageView mVoicePause;
+    @BindView(R.id.voice_time)
+    TextView mVoiceTime;
 
     private String path1 = "http://contres.readboy.com/resources/lexicon/chinese_dictionary/spelling/16/16f127fae7e42dd0947f730b29cc169b.mp3";
     private String path2 = "https://rbebag-zy-test.strongwind.cn/periodic/homework/2302037020073834.mp3";
@@ -45,10 +48,9 @@ public class MediaActivity extends AppCompatActivity {
             @Override
             public void run() {
                 int curPosition = MediaPlayHelper.getInstance().getCurPosition();
-                Log.d(TAG, "run: " + curPosition);
                 Message message = Message.obtain(mHandler, 0x02, mDuration, curPosition);
                 message.sendToTarget();
-                mHandler.post(this);
+                mHandler.postDelayed(this, 1000);
             }
         };
 
@@ -58,14 +60,35 @@ public class MediaActivity extends AppCompatActivity {
                 mDuration = duration;
                 MediaPlayHelper.getInstance().start();
                 mHandler.postDelayed(mRunnable, 1000);
+                switchPlayStatusIcon(0);
             }
 
             @Override
             public void completed() {
                 mHandler.removeCallbacks(mRunnable);
+                switchPlayStatusIcon(1);
+                mVoiceSeek.setProgress(100);
             }
         });
 
+        mVoiceSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int progress = seekBar.getProgress();
+                MediaPlayHelper.getInstance().setPosition(progress * mDuration / 100);
+                MediaPlayHelper.getInstance().start();
+            }
+        });
 
     }
 
@@ -100,12 +123,18 @@ public class MediaActivity extends AppCompatActivity {
 
                     break;
                 case 0x02:
-                    Log.d(TAG, "arg2: " + msg.arg2 + " / arg1: " + msg.arg1);
-
-                    mVoiceSeek.setProgress(msg.arg2 / msg.arg1);
+                    Log.d(TAG, ": arg2: " + msg.arg2 + " - arg1: " + msg.arg1);
+                    mVoiceTime.setText(MediaPlayHelper.formatTime(msg.arg2));
+                    mVoiceSeek.setProgress(msg.arg2 * 100 / msg.arg1);
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MediaPlayHelper.getInstance().stop();
     }
 
     @OnClick({R.id.media_play, R.id.media_play2})
@@ -117,6 +146,16 @@ public class MediaActivity extends AppCompatActivity {
             case R.id.media_play2:
                 MediaPlayHelper.getInstance().setPath(path2);
                 break;
+        }
+    }
+
+    public void switchPlayStatusIcon(int i) {
+        mVoicePause.setVisibility(View.GONE);
+        mVoicePlay.setVisibility(View.GONE);
+        if (i == 0) {
+            mVoicePause.setVisibility(View.VISIBLE);
+        } else if (i == 1) {
+            mVoicePlay.setVisibility(View.VISIBLE);
         }
     }
 }
