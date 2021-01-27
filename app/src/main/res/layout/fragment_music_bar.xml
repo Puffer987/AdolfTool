@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mediaPlay.MediaActivity">
+    android:layout_height="60dp"
+    tools:context=".mediaPlay.MusicBarFragment">
 
     <RelativeLayout
-        android:layout_width="400dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:background="@drawable/seek_bar_bg"
-        android:visibility="gone">
+        android:background="@drawable/seek_bar_bg">
 
         <ProgressBar
-            style=""
+            android:id="@+id/voice_loading"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:indeterminate="true"
-            android:indeterminateDrawable="@drawable/progress_bg"
             android:padding="10dp" />
 
         <ImageView
@@ -29,7 +26,7 @@
             android:layout_marginStart="10dp"
             android:padding="10dp"
             android:src="@mipmap/ic_start"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/voice_pause"
@@ -70,32 +67,4 @@
             android:src="@mipmap/ic_close" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom|center_horizontal">
-
-        <Button
-            android:id="@+id/media_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="play" />
-
-        <Button
-            android:id="@+id/media_play2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="play2" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:id="@+id/music_bar"
-        android:layout_marginBottom="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
-
-</RelativeLayout>
+</FrameLayout>

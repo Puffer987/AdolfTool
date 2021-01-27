@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -32,6 +33,8 @@ public class MediaActivity extends AppCompatActivity {
     ImageView mVoicePause;
     @BindView(R.id.voice_time)
     TextView mVoiceTime;
+    @BindView(R.id.music_bar)
+    FrameLayout mMusicBar;
 
     private String path1 = "http://contres.readboy.com/resources/lexicon/chinese_dictionary/spelling/16/16f127fae7e42dd0947f730b29cc169b.mp3";
     private String path2 = "https://rbebag-zy-test.strongwind.cn/periodic/homework/2302037020073834.mp3";
@@ -44,13 +47,18 @@ public class MediaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_media);
         ButterKnife.bind(this);
 
+        MusicBarFragment musicBarFragment = MusicBarFragment.newInstance(path2);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.music_bar,musicBarFragment).commit();
+
         mRunnable = new Runnable() {
             @Override
             public void run() {
                 int curPosition = MediaPlayHelper.getInstance().getCurPosition();
                 Message message = Message.obtain(mHandler, 0x02, mDuration, curPosition);
-                message.sendToTarget();
-                mHandler.postDelayed(this, 1000);
+                mHandler.sendMessageDelayed(message, 1000);
+                // message.sendToTarget();
+                // mHandler.postDelayed(this, 1000);
             }
         };
 
