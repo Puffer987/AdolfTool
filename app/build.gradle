@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation'com.squareup.okhttp3:okhttp:4.4.0'
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

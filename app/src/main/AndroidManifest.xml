@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mediaPlay.MediaActivity"></activity>
+        <activity android:name=".cache.CacheActivity"></activity>
+        <activity android:name=".mediaPlay.MediaActivity" />
         <activity android:name=".notification.NotificationActivity" />
         <activity android:name=".widget.WidgetActivity" />
 

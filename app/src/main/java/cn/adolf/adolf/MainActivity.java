@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.adolf.adolf.cache.CacheActivity;
 import cn.adolf.adolf.file.FileActivity;
 import cn.adolf.adolf.intent.StartIntentActivity;
 import cn.adolf.adolf.animRv.RvAdvanceActivity;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider,
             R.id.start_intent, R.id.start_progress, R.id.start_pathanim,
             R.id.start_file, R.id.start_widget, R.id.start_notification,
-            R.id.start_media})
+            R.id.start_media, R.id.start_cache})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rv_advance:
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.start_media:
                 startActivity(new Intent(this, MediaActivity.class));
+                break;
+            case R.id.start_cache:
+                startActivity(new Intent(this, CacheActivity.class));
                 break;
         }
     }
