@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
@@ -104,7 +105,7 @@ public class MediaPlayHelper {
     }
 
     public void setPosition(int m) {
-        Log.d(TAG, "setPosition: "+m);
+        Log.d(TAG, "setPosition: " + m);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O)
             mMediaPlayer.seekTo(m, MediaPlayer.SEEK_CLOSEST_SYNC);
         else {

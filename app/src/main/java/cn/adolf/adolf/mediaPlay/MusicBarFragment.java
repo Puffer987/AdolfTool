@@ -13,12 +13,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,13 +95,31 @@ public class MusicBarFragment extends Fragment {
                 mHandler.postDelayed(this, 1000);
             }
         };
+        mVoiceSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mVoiceTime.setText(MediaPlayHelper.formatTime(progress * mDuration / 100));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int progress = seekBar.getProgress();
+                mPlayer.seekTo(progress * mDuration / 100);
+                // mPlayer.start();
+            }
+        });
     }
 
     private void initPlayer() {
         try {
             mPlayer = new MediaPlayer();
             mPlayer.setDataSource(mPath);
-            mPlayer.prepareAsync();
+            // mPlayer.prepareAsync();
             switchBtn(0);
             setListener();
         } catch (IOException e) {
@@ -105,12 +128,10 @@ public class MusicBarFragment extends Fragment {
     }
 
     private void setListener() throws IOException {
-
-
         mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
-                mDuration = mPlayer.getDuration();
+                mDuration = mediaPlayer.getDuration();
                 switchBtn(1);
             }
         });
@@ -119,6 +140,7 @@ public class MusicBarFragment extends Fragment {
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
                 mVoiceSeek.setSecondaryProgress(percent);
+                Log.d(TAG, "onBufferingUpdate: " + percent);
             }
         });
 
@@ -128,44 +150,77 @@ public class MusicBarFragment extends Fragment {
                 mHandler.removeCallbacks(mTimeRunable);
                 mVoiceSeek.setProgress(100);
                 mVoiceTime.setText(MediaPlayHelper.formatTime(mDuration));
-                mPlayer.stop();
+                switchBtn(1);
+                // mPlayer.pause();
+            }
+        });
+
+        mPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+            @Override
+            public void onSeekComplete(MediaPlayer mp) {
+                switchBtn(2);
+                // if (mp != null && !mp.isPlaying()) {
+                //     mp.start();
+                // }
+            }
+        });
+
+        mPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                Log.e(TAG, "播放出现问题 what:" + what + ",extra:" + extra);
+                Toast.makeText(getContext(), "播放出现问题", Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
     }
 
+    /**
+     * 0：加载
+     * 1：播放按钮显示，音乐没有播放
+     * 2：暂停按钮显示，音乐播放中
+     *
+     * @param btn
+     */
     private void switchBtn(int btn) {
         mVoiceLoading.setVisibility(View.GONE);
         mVoicePlay.setVisibility(View.GONE);
         mVoicePause.setVisibility(View.GONE);
         switch (btn) {
             case 0:
+                mPlayer.prepareAsync();
                 mVoiceLoading.setVisibility(View.VISIBLE);
                 break;
             case 1:
+                if (mPlayer.isPlaying()) {
+                mHandler.removeCallbacks(mTimeRunable);
+                mPlayer.pause();
+                }
                 mVoicePlay.setVisibility(View.VISIBLE);
                 break;
             case 2:
+                if (!mPlayer.isPlaying()) {
+                mHandler.postDelayed(mTimeRunable, 1000);
+                mPlayer.start();
+                }
                 mVoicePause.setVisibility(View.VISIBLE);
                 break;
         }
     }
 
-
     @OnClick({R.id.voice_play, R.id.voice_pause, R.id.voice_close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.voice_play:
-                mHandler.postDelayed(mTimeRunable, 1000);
                 switchBtn(2);
-                mPlayer.start();
                 break;
             case R.id.voice_pause:
                 switchBtn(1);
-                mPlayer.pause();
                 break;
             case R.id.voice_close:
-                switchBtn(1);
-                mPlayer.stop();
+                // switchBtn(1);
+                // mPlayer.stop();
+                mPlayer.seekTo(10000);
                 break;
         }
     }
@@ -175,9 +230,10 @@ public class MusicBarFragment extends Fragment {
         super.onDestroy();
         if (mPlayer != null) {
             mPlayer.stop();
-            mPlayer.reset();
+            mPlayer.release();
         }
     }
+
 
     public class MyHandler extends Handler {
         // 定义 弱引用实例
