@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.jakewharton:disklrucache:2.0.2'
+
     implementation'com.squareup.okhttp3:okhttp:4.4.0'
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

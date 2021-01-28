@@ -179,8 +179,6 @@ public class MusicBarFragment extends Fragment {
      * 0：加载
      * 1：播放按钮显示，音乐没有播放
      * 2：暂停按钮显示，音乐播放中
-     *
-     * @param btn
      */
     private void switchBtn(int btn) {
         mVoiceLoading.setVisibility(View.GONE);
