@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.LruCache;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,23 +30,46 @@ import okhttp3.Response;
  * @author: yjq
  * @create: 2021-01-28 15:39
  **/
-public class MemoryLruUtils {
+public class MemoryLruHelper {
     private static final String TAG = "MemoryLruUtils";
     private MyHandler mHandler;
     private Context mContext;
-    private ImageLoader mImageLoader;
     private ImageView imageView;
+    private LruCache<String, Bitmap> mLruCache;
 
-    public MemoryLruUtils(Context context, ImageView imageView, AppCompatActivity activity) {
-        mContext = context;
+    public MemoryLruHelper(Context context, ImageView imageView, AppCompatActivity activity) {
+        this.mContext = context;
         this.imageView = imageView;
-        mHandler = new MyHandler(activity);
-        mImageLoader = new ImageLoader();
+        this.mHandler = new MyHandler(activity);
+
+        long maxMemory = Runtime.getRuntime().maxMemory();
+        Log.d(TAG, "maxMemory: " + maxMemory);
+        int cacheSize = (int) (maxMemory / 2);
+        this.mLruCache = new LruCache<String, Bitmap>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                return value.getByteCount();
+            }
+        };
+    }
+
+    public void addBitmap(String key, Bitmap bitmap) {
+        if (getBitmap(key) == null) {
+            mLruCache.put(key, bitmap);
+        }
+    }
+
+    public Bitmap getBitmap(String key) {
+        return mLruCache.get(key);
+    }
+
+    public void removeBitmap(String key) {
+        mLruCache.remove(key);
     }
 
     public void loadImg(String path) {
         Log.d(TAG, "url: " + path);
-        Bitmap bitmap = mImageLoader.getBitmap(hashKeyForCache(path));
+        Bitmap bitmap = getBitmap(hashKeyForCache(path));
         if (bitmap != null) {//有缓存
             Toast.makeText(mContext, "从缓存中取出图片", Toast.LENGTH_SHORT).show();
             imageView.setImageBitmap(bitmap);
@@ -67,7 +91,7 @@ public class MemoryLruUtils {
                     byte[] Picture_bt = response.body().bytes();
 
                     Bitmap bitmap = BitmapFactory.decodeByteArray(Picture_bt, 0, Picture_bt.length);
-                    mImageLoader.addBitmap(hashKeyForCache(path), bitmap);
+                    addBitmap(hashKeyForCache(path), bitmap);
 
                     Message message = mHandler.obtainMessage();
                     message.obj = Picture_bt;

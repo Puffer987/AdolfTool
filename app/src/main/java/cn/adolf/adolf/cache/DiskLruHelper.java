@@ -34,6 +34,13 @@ public class DiskLruHelper {
         mDiskLruCache = openCache(mContext, dirName);
     }
 
+    /**
+     * 使用DiskLruCache.Editor添加一个缓存
+     * 添加一个key：edit(key)
+     * 添加一个value：newOutputStream(0)绑定一个outputStream
+     * commit()：确认提交
+     * abort()：放弃
+     */
     public void put(String url) {
         new Thread(new Runnable() {
             @Override
@@ -57,6 +64,12 @@ public class DiskLruHelper {
         }).start();
     }
 
+    /**
+     * 获取一个缓存
+     * get()获得一个DiskLruCache.Snapshot
+     * DiskLruCache.Snapshot#getInputStream获取到一个InputStream
+     * 再将InputStream转为相应格式的文件
+     */
     public InputStream get(String url) {
         InputStream is = null;
         try {
@@ -84,13 +97,42 @@ public class DiskLruHelper {
         return success;
     }
 
-    public long size(){
+    /**
+     * 获取缓存数据的大小
+     * journal文件中CLEAN标记后的数值相加
+     */
+    public long size() {
         return mDiskLruCache.size();
     }
 
-    public void flush(){
+    /**
+     * 将内存中的操作记录同步到journal文件中，一般在onPause中调用
+     */
+    public void flush() {
         try {
             mDiskLruCache.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 关闭，一般在onDestroy调用
+     */
+    public void close() {
+        try {
+            mDiskLruCache.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 将所有缓存数据清除
+     */
+    public void delete() {
+        try {
+            mDiskLruCache.delete();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -136,7 +178,7 @@ public class DiskLruHelper {
     }
 
     /**
-     * 下载数据
+     * HttpURLConnection下载数据
      */
     private boolean downloadUrlToStream(String urlString, OutputStream outputStream) {
         HttpURLConnection urlConnection = null;
