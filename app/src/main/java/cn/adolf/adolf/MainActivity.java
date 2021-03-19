@@ -3,6 +3,7 @@ package cn.adolf.adolf;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -11,12 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.adolf.adolf.cache.CacheActivity;
+import cn.adolf.adolf.cropper.CropperActivity;
+import cn.adolf.adolf.db.DbOpenTestActivity;
 import cn.adolf.adolf.file.FileActivity;
 import cn.adolf.adolf.intent.StartIntentActivity;
 import cn.adolf.adolf.animRv.RvAdvanceActivity;
@@ -31,6 +36,7 @@ import cn.adolf.adolf.db.DbMainActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     String[] allPermission = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"};
     ArrayList<String> noGrantedPerm = new ArrayList<>();
 
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.rv_advance, R.id.workspace, R.id.database_provider,
             R.id.start_intent, R.id.start_progress, R.id.start_pathanim,
             R.id.start_file, R.id.start_widget, R.id.start_notification,
-            R.id.start_media, R.id.start_cache})
+            R.id.start_media, R.id.start_cache, R.id.start_open_db, R.id.start_cropper})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rv_advance:
@@ -82,6 +88,31 @@ public class MainActivity extends AppCompatActivity {
             case R.id.start_cache:
                 startActivity(new Intent(this, CacheActivity.class));
                 break;
+            case R.id.start_open_db:
+                fileTest();
+                startActivity(new Intent(this, DbOpenTestActivity.class));
+                break;
+
+            case R.id.start_cropper:
+                fileTest();
+                startActivity(new Intent(this, CropperActivity.class));
+                break;
+        }
+    }
+
+    private void fileTest() {
+        String s = Environment.getExternalStorageDirectory() + "/A/AA/AAA/a.txt";
+        File file = new File(s);
+        if (!file.exists()) {
+            boolean mkdirs = file.getParentFile().mkdirs();
+            Log.d(TAG, "mkdirs: " + mkdirs);
+            try {
+                boolean newFile = file.createNewFile();
+                Log.d(TAG, "createNewFile: " + newFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

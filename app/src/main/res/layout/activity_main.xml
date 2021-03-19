@@ -80,5 +80,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="缓存" />
+
+        <Button
+            android:id="@+id/start_open_db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开数据库" />
+
+        <Button
+            android:id="@+id/start_cropper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="裁剪工具" />
     </LinearLayout>
 </LinearLayout>

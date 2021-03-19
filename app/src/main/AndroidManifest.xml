@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.adolf.adolf">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,8 +16,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".cache.CacheActivity"></activity>
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
+        <activity android:name=".cropper.CropperActivity"></activity>
+        <activity android:name=".db.DbOpenTestActivity" />
+        <activity android:name=".cache.CacheActivity" />
         <activity android:name=".mediaPlay.MediaActivity" />
         <activity android:name=".notification.NotificationActivity" />
         <activity android:name=".widget.WidgetActivity" />
