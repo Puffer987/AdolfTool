@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.adolf.adolf">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
@@ -17,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:name">
+        tools:replace="android:allowBackup">
         <activity android:name=".cropper.CropperActivity"></activity>
         <activity android:name=".db.DbOpenTestActivity" />
         <activity android:name=".cache.CacheActivity" />

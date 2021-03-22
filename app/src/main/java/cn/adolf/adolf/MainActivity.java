@@ -1,5 +1,6 @@
 package cn.adolf.adolf;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ import cn.adolf.adolf.db.DbMainActivity;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    String[] allPermission = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"};
+    String[] allPermission = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE", Manifest.permission.CAMERA};
     ArrayList<String> noGrantedPerm = new ArrayList<>();
 
     @Override
