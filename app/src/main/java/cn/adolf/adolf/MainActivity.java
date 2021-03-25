@@ -16,12 +16,11 @@ import androidx.core.app.ActivityCompat;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.adolf.adolf.cache.CacheActivity;
-import cn.adolf.adolf.cropper.CropperActivity;
+import cn.adolf.adolf.cropper.AdolfCropperActivity;
 import cn.adolf.adolf.db.DbOpenTestActivity;
 import cn.adolf.adolf.file.FileActivity;
 import cn.adolf.adolf.intent.StartIntentActivity;
@@ -29,7 +28,6 @@ import cn.adolf.adolf.animRv.RvAdvanceActivity;
 import cn.adolf.adolf.mediaPlay.MediaActivity;
 import cn.adolf.adolf.notification.NotificationActivity;
 import cn.adolf.adolf.pathAnim.PathAnimActivity;
-import cn.adolf.adolf.widget.DaysWidgetConfigureActivity;
 import cn.adolf.adolf.widget.WidgetActivity;
 import cn.adolf.adolf.wsp2.ProgressActivity;
 import cn.adolf.adolf.wsp2.VisibleListenerActivity;
@@ -95,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.start_cropper:
-                fileTest();
-                startActivity(new Intent(this, CropperActivity.class));
+                startActivity(new Intent(this, AdolfCropperActivity.class));
                 break;
         }
     }
@@ -128,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, noGrantedPerm.toArray(new String[noGrantedPerm.size()]), 0x11);
         } else {
             Toast.makeText(this, "已有所需权限", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, AdolfCropperActivity.class));
         }
     }
 

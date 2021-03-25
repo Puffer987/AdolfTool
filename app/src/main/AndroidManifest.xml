@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".cropper.CropperActivity"></activity>
+        <activity android:name=".cropper.AdolfCropper2Activity"></activity>
+        <activity android:name=".cropper.AdolfCropperActivity" />
         <activity android:name=".db.DbOpenTestActivity" />
         <activity android:name=".cache.CacheActivity" />
         <activity android:name=".mediaPlay.MediaActivity" />
